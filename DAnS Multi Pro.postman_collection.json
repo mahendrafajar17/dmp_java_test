@@ -1,0 +1,193 @@
+{
+	"info": {
+		"_postman_id": "fbc2e107-6d4f-4063-9a2b-27c435c05409",
+		"name": "DAnS Multi Pro",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5418968"
+	},
+	"item": [
+		{
+			"name": "External API",
+			"item": [
+				{
+					"name": "DMPJobs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://dev3.dansmultipro.co.id/api/recruitment/positions.json",
+							"protocol": "http",
+							"host": [
+								"dev3",
+								"dansmultipro",
+								"co",
+								"id"
+							],
+							"path": [
+								"api",
+								"recruitment",
+								"positions.json"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DMPJobDetails",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://dev3.dansmultipro.co.id/api/recruitment/positions/32bf67e5-4971-47ce-985c-44b6b3860cdb",
+							"protocol": "http",
+							"host": [
+								"dev3",
+								"dansmultipro",
+								"co",
+								"id"
+							],
+							"path": [
+								"api",
+								"recruitment",
+								"positions",
+								"32bf67e5-4971-47ce-985c-44b6b3860cdb"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Signup",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Mahendra Fajar\",\r\n    \"username\": \"mahendra.fajar\",\r\n    \"password\": \"password\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/auth/sign-up",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"auth",
+						"sign-up"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SignIn",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtYWhlbmRyYS5mYWphciIsIlJPTEVTIjpbIlVTRVIiXSwiZXhwIjoxNjc3MzQxMDExLCJpYXQiOjE2NzczMjMwMTF9.tltyzWYtKfKQqrbD2nHfbuVOuSDxOYBUKELuFrAybla1g3_XiXGcouQZSpeEy6chvdI93H7wC1grf-y1nM29SQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"mahendra.fajar\",\r\n    \"password\": \"password\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/auth/sign-in",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"auth",
+						"sign-in"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Jobs",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtYWhlbmRyYS5mYWphciIsIlJPTEVTIjpbIlVTRVIiXSwiZXhwIjoxNjc3MzQxMDExLCJpYXQiOjE2NzczMjMwMTF9.tltyzWYtKfKQqrbD2nHfbuVOuSDxOYBUKELuFrAybla1g3_XiXGcouQZSpeEy6chvdI93H7wC1grf-y1nM29SQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/jobs",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"jobs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Job Details",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtYWhlbmRyYS5mYWphciIsIlJPTEVTIjpbIlVTRVIiXSwiZXhwIjoxNjc3MzQxMDExLCJpYXQiOjE2NzczMjMwMTF9.tltyzWYtKfKQqrbD2nHfbuVOuSDxOYBUKELuFrAybla1g3_XiXGcouQZSpeEy6chvdI93H7wC1grf-y1nM29SQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/jobs/32bf67e5-4971-47ce-985c-44b6b3860cdb",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"jobs",
+						"32bf67e5-4971-47ce-985c-44b6b3860cdb"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
