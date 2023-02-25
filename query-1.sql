@@ -1,0 +1,1 @@
+SELECT *, (SELECT count(*) FROM account WHERE account.acc_owner=customer.cust_id) as "count_account" FROM customer;
