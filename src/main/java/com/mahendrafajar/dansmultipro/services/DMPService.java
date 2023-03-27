@@ -1,12 +1,12 @@
 package com.mahendrafajar.dansmultipro.services;
 
 import com.mahendrafajar.dansmultipro.configurations.HttpErrorHandler;
-import org.apache.http.client.utils.URIBuilder;
+import com.mahendrafajar.dansmultipro.dto.Job;
+import com.mahendrafajar.dansmultipro.dto.JobsResponse;
 import org.apache.http.conn.ssl.NoopHostnameVerifier;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.stereotype.Service;
@@ -19,7 +19,7 @@ import java.security.KeyManagementException;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.security.cert.X509Certificate;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class DMPService {
@@ -38,9 +38,31 @@ public class DMPService {
     public Object getJobs() throws KeyStoreException, NoSuchAlgorithmException, KeyManagementException {
         RestTemplate restTemplate = restTemplate();
 
-        ResponseEntity<Object> responseEntity = restTemplate.getForEntity(dmpUrl + dmpApiPathJobs, Object.class);
+        ResponseEntity<Job[]> responseEntity = restTemplate.getForEntity(dmpUrl + dmpApiPathJobs, Job[].class);
 
-        return responseEntity.getBody();
+        List<Job> jobs = Arrays.asList(Objects.requireNonNull(responseEntity.getBody()));
+
+        JobsResponse jobsResponse = new JobsResponse();
+        jobsResponse.setCode("00");
+        jobsResponse.setMessage("SUCCESS");
+
+        for (Job job : jobs) {
+            if(jobsResponse.getData().getResult().stream().noneMatch(o -> o.getLocation().equals(job.getLocation()))){
+                JobsResponse.Data.Result result = new JobsResponse.Data.Result();
+                result.setLocation(job.getLocation());
+                result.getData().add(job);
+
+                jobsResponse.getData().getResult().add(result);
+            }else{
+                Optional<JobsResponse.Data.Result> resultOptional = jobsResponse.getData().getResult().stream().filter(o -> o.getLocation().equals(job.getLocation())).findFirst();
+
+                JobsResponse.Data.Result result = resultOptional.get();
+
+                result.getData().add(job);
+            }
+        }
+
+        return jobsResponse;
     }
 
     public Object getJobDetails(String id) throws KeyStoreException, NoSuchAlgorithmException, KeyManagementException {

@@ -19,7 +19,7 @@ public class JobController {
     @Autowired
     DMPService dmpService;
 
-    @GetMapping("/")
+    @GetMapping
     public ResponseEntity<Object> getJobs() throws KeyStoreException, NoSuchAlgorithmException, KeyManagementException {
         return ResponseEntity.ok().body(dmpService.getJobs());
     }
